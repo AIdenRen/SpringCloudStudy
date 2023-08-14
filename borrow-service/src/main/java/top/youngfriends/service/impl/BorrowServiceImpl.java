@@ -10,14 +10,19 @@ import top.youngfriends.po.Borrow;
 import top.youngfriends.po.User;
 import top.youngfriends.service.BorrowService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author pap
+ */
 @Service
 public class BorrowServiceImpl implements BorrowService {
     @Autowired
     BorrowMapper borrowMapper;
+
+    @Autowired
+    RestTemplate restTemplate;
 
     @Override
     public Borrow getBorrowById(int id) {
@@ -42,10 +47,9 @@ public class BorrowServiceImpl implements BorrowService {
     @Override
     public UserBorrowDetails getUsrBorrowDetailsByUid(int uid) {
         List<Borrow> borrows = borrowMapper.getBorrowByUid(uid);
-        RestTemplate template = new RestTemplate();
-        User user = template.getForObject("http://localhost:8101/user/" + uid, User.class);
+        User user = restTemplate.getForObject("http://userService/user/" + uid, User.class);
         List<Book> books = borrows.stream()
-                .map(borrow -> template.getForObject("http://localhost:8201/book/" + borrow.getBid(), Book.class))
+                .map(borrow -> restTemplate.getForObject("http://bookService/book/" + borrow.getBid(), Book.class))
                 .collect(Collectors.toList());
         return new UserBorrowDetails(user, books);
     }

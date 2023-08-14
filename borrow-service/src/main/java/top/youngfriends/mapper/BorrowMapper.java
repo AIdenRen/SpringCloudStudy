@@ -7,6 +7,9 @@ import top.youngfriends.po.Borrow;
 
 import java.util.List;
 
+/**
+ * @author pap
+ */
 @Mapper
 public interface BorrowMapper {
     @Select("select * from db_borrow where id = #{id}")

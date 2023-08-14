@@ -6,6 +6,9 @@ import top.youngfriends.po.Borrow;
 
 import java.util.List;
 
+/**
+ * @author pap
+ */
 public interface BorrowService {
 
     Borrow getBorrowById(int id);
