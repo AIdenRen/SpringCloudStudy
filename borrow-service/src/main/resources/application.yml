@@ -1,0 +1,8 @@
+server:
+  port: 8301
+spring:
+  datasource:
+    password: Root1@root
+    username: root
+    url: jdbc:mysql://113.125.52.186:3306/cloudstudy?useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
