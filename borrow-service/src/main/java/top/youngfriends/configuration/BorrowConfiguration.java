@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
  * @author pap
  */
 @Configuration
-@LoadBalancerClient(value = "userService", configuration = LoadBalancerConfiguration.class)
+//@LoadBalancerClient(value = "userService", configuration = LoadBalancerConfiguration.class)
 public class BorrowConfiguration {
     @Bean
     @LoadBalanced
