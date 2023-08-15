@@ -23,9 +23,6 @@ public class BorrowServiceImpl implements BorrowService {
     @Autowired
     BorrowMapper borrowMapper;
 
-//    @Autowired
-//    RestTemplate restTemplate;
-
     @Autowired
     BookClient bookClient;
 

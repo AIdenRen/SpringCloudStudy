@@ -8,7 +8,10 @@ spring:
     username: root
     url: jdbc:mysql://113.125.52.186:3306/cloudstudy?useUnicode=true&characterEncoding=UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
-
+  cloud:
+    circuitbreaker:
+      hystrix:
+        enabled: true
 eureka:
   client:
     service-url:

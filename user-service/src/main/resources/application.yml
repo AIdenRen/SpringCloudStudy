@@ -8,19 +8,7 @@ spring:
     username: root
     url: jdbc:mysql://113.125.52.186:3306/cloudstudy?useUnicode=true&characterEncoding=UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
-
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8888/eureka, http://localhost:8889/eureka
-# eureka集成了 `ribbon` 使用 webServer 需要配置 `ribbon` 否则就会出现 java.lang.IllegalStateException: No instances available for xxx(service 实例)
-#the-accounts-service:
-#  ribbon:
-#    # Eureka vipAddress of the target service
-#    DeploymentContextBasedVipAddresses: userService
-#
-#    #listOfServers: localhost:${SERVER.PORT}
-#    NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
-#
-#    # Interval to refresh the server list from the source (ms)
-#    ServerListRefreshInterval: 30000
