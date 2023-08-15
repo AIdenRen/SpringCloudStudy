@@ -8,9 +8,7 @@ import top.youngfriends.mapper.BorrowMapper;
 import top.youngfriends.po.Book;
 import top.youngfriends.po.Borrow;
 import top.youngfriends.po.User;
-import top.youngfriends.service.BookClient;
 import top.youngfriends.service.BorrowService;
-import top.youngfriends.service.UserClient;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,14 +21,8 @@ public class BorrowServiceImpl implements BorrowService {
     @Autowired
     BorrowMapper borrowMapper;
 
-//    @Autowired
-//    RestTemplate restTemplate;
-
     @Autowired
-    BookClient bookClient;
-
-    @Autowired
-    UserClient userClient;
+    RestTemplate restTemplate;
 
     @Override
     public Borrow getBorrowById(int id) {
@@ -55,9 +47,9 @@ public class BorrowServiceImpl implements BorrowService {
     @Override
     public UserBorrowDetails getUsrBorrowDetailsByUid(int uid) {
         List<Borrow> borrows = borrowMapper.getBorrowByUid(uid);
-        User user = userClient.findUserById(uid);
+        User user = restTemplate.getForObject("http://userService/user/" + uid, User.class);
         List<Book> books = borrows.stream()
-                .map(b -> bookClient.findBookById(b.getBid()))
+                .map(b -> restTemplate.getForObject("http://bookService/book/" + b.getBid(), Book.class))
                 .collect(Collectors.toList());
         return new UserBorrowDetails(user, books);
     }
