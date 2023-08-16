@@ -1,5 +1,6 @@
 package top.youngfriends.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,8 @@ public class BookController {
     BookService bookService;
 
     @RequestMapping("/{bid}")
-    public Book getBookById(@PathVariable("bid") int bid) {
+    public Book getBookById(@PathVariable("bid") int bid, HttpServletRequest request) {
+        System.out.println(request.getHeader("Test"));
         return bookService.getBookByBid(bid);
     }
 }
